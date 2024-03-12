@@ -2,7 +2,7 @@
 <html>
 <style>
 body {
-font-family: <text_font>;
+font-family: Arial;
 }
 </style>
 <body>
@@ -14,6 +14,54 @@ let today = new Date();
 let date = (today.getMonth()+1)+'-'+today.getDate()+'-'+today.getFullYear();
 
 document.getElementById("t1").innerHTML = date;
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Date Difference Calculator</title>
+</head>
+<body>
+<h1>Date Difference Calculator</h1>
+
+<label for="selectedDate">Select a date:</label>
+<input type="date" id="selectedDate">
+
+<p id="currentDate"></p>
+<p id="dateDifference"></p>
+
+<script>
+  // Function to calculate the difference in days between two dates
+  function dateDifference(startDate, endDate) {
+    const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+    const diffInTime = endDate.getTime() - startDate.getTime();
+    const diffInDays = Math.round(diffInTime / oneDay);
+    return diffInDays;
+  }
+
+  // Get the current date
+  var currentDate = new Date();
+
+  // Format the current date to display nicely
+  var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  var formattedCurrentDate = currentDate.toLocaleDateString('en-US', options);
+
+  // Display the formatted current date
+  document.getElementById('currentDate').textContent = "Current Date: " + formattedCurrentDate;
+
+  // Add event listener to the date input
+  document.getElementById('selectedDate').addEventListener('change', function() {
+    // Get the selected date
+    var selectedDate = new Date(this.value);
+
+    // Calculate the difference in days
+    var differenceInDays = dateDifference(currentDate, selectedDate);
+
+    // Display the difference in days
+    document.getElementById('dateDifference').textContent = "Difference in days: " + differenceInDays;
+  });
 </script>
 </body>
 </html>
