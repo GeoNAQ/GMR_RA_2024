@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<style>
+body {
+font-family: <text_font>;
+}
+</style>
+<body>
+<p id="t1" style="color:rgb(0, 0, 0); "></p>
+<script>
+
+let today = new Date();
+
+let date = (today.getMonth()+1)+'-'+today.getDate()+'-'+today.getFullYear();
+
+document.getElementById("t1").innerHTML = date;
+</script>
+</body>
+</html>
