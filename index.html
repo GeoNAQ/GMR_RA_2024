@@ -1,22 +1,4 @@
 <!DOCTYPE html>
-<html>
-<style>
-body {
-font-family: Arial;
-}
-</style>
-<body>
-<p id="t1" style="color:rgb(0, 0, 0); "></p>
-<script>
-
-let today = new Date();
-
-let date = (today.getMonth()+1)+'-'+today.getDate()+'-'+today.getFullYear();
-
-document.getElementById("t1").innerHTML = date;
-</script>
-</body>
-</html><!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -25,9 +7,6 @@ document.getElementById("t1").innerHTML = date;
 </head>
 <body>
 <h1>Date Difference Calculator</h1>
-
-<label for="selectedDate">Select a date:</label>
-<input type="date" id="selectedDate">
 
 <p id="currentDate"></p>
 <p id="dateDifference"></p>
@@ -51,17 +30,31 @@ document.getElementById("t1").innerHTML = date;
   // Display the formatted current date
   document.getElementById('currentDate').textContent = "Current Date: " + formattedCurrentDate;
 
-  // Add event listener to the date input
-  document.getElementById('selectedDate').addEventListener('change', function() {
-    // Get the selected date
-    var selectedDate = new Date(this.value);
+  // Function to get URL parameter by name
+  function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+  };
+
+  // Get the selected date from the URL parameter
+  var selectedDateParam = getUrlParameter('selectedDate');
+
+  // Parse the selected date if it exists
+  if (selectedDateParam) {
+    var selectedDate = new Date(selectedDateParam);
 
     // Calculate the difference in days
     var differenceInDays = dateDifference(currentDate, selectedDate);
 
-    // Display the difference in days
-    document.getElementById('dateDifference').textContent = "Difference in days: " + differenceInDays;
-  });
+    // Display the selected date and the difference in days
+    var formattedSelectedDate = selectedDate.toLocaleDateString('en-US', options);
+    document.getElementById('dateDifference').textContent = "Selected Date: " + formattedSelectedDate + " | Difference in days: " + differenceInDays;
+  } else {
+    // If no selected date is provided, display a message
+    document.getElementById('dateDifference').textContent = "No selected date provided.";
+  }
 </script>
 </body>
 </html>
