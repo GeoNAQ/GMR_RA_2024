@@ -6,19 +6,19 @@
 <style>
   body {
     font-family: Arial, sans-serif;
-    color: #FFFFFF;
+    color: #000000;
   }
   h1 {
-    color: #FFFFFF;
+    color: #000000;
   }
   p {
     font-size: 18px;
-    color: #FFFFFF;
+    color: #000000;
   }
 </style>
 </head>
 <body>
-<h1>Date Difference Calculator</h1>
+<h1>Temps restant aux projets</h1>
 
 <p id="currentDate"></p>
 <p id="dateDifference"></p>
@@ -44,9 +44,12 @@
   // Get the selected date from URL parameter
   var urlParams = new URLSearchParams(window.location.search);
   var selectedDateParam = urlParams.get('selectedDate');
+  
+  // Split the string into day, month, and year components
+  var dateComponents = dateString.split('/');
 
   // Convert the selected date parameter to a Date object
-  var selectedDate = new Date(selectedDateParam);
+  var selectedDate = new Date(dateComponents[2], dateComponents[1] - 1, dateComponents[0]);
 
   // Format the selected date to display nicely
   var formattedSelectedDate = (selectedDate.getMonth() + 1) + '/' + selectedDate.getDate() + '/' + selectedDate.getFullYear();
