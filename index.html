@@ -51,10 +51,10 @@
   };
 
   // Get the selected date from the URL parameter
-  var selectedDateParam = getUrlParameter('selectedDate');
+  //var selectedDateParam = getUrlParameter('selectedDate');
 
   // Check if a date is provided in the URL parameter
-    
+    var selectedDateParam = "01/06/2024"
 
   if (selectedDateParam) {
 	// Parse the selected date
@@ -65,6 +65,7 @@
 	// Create a new Date object
 	// Note: JavaScript counts months from 0 to 11, so you need to subtract 1 from the month component
 	var selectedDate = new Date(dateComponents[2], dateComponents[1] - 1, dateComponents[0]);
+	console.log(selectedDate);
 	var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 	var formattedselectedDate = selectedDate.toLocaleDateString('fr-CA', options);
 	
