@@ -37,7 +37,7 @@
 
   // Format the current date to display nicely
   var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  var formattedCurrentDate = currentDate.toLocaleDateString('en-US', options);
+  var formattedCurrentDate = currentDate.toLocaleDateString('fr-CA', options);
 
   // Display the formatted current date
   document.getElementById('currentDate').textContent = "Current Date: " + formattedCurrentDate;
@@ -65,10 +65,11 @@
 	// Create a new Date object
 	// Note: JavaScript counts months from 0 to 11, so you need to subtract 1 from the month component
 	var selectedDate = new Date(dateComponents[2], dateComponents[1] - 1, dateComponents[0]);
+	var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 	var formattedselectedDate = selectedDate.toLocaleDateString('fr-CA', options);
 	
 	// Display the formatted current date
-	document.getElementById('selectedDate').textContent = "Date de fin de projet 9+: " + formattedCurrentDate;
+	document.getElementById('selectedDate').textContent = "Date de fin de projet 9+: " + formattedselectedDate;
 
 	// Calculate the difference in days
 	var differenceInDays = dateDifference(currentDate, selectedDate);
